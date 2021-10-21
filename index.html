@@ -1,64 +1,6 @@
 <!DOCTYPE html>
 <html>
 	<body>
-		<canvas id="createjsCanvas" style="position: absolute"></canvas>
-
-		<!-- Charger la librairie createjs avec le lien online -->
-		<script src="https://code.createjs.com/1.0.0/easeljs.min.js"></script>
-
-		<script>
-			const HTMLCanvas = document.getElementById("createjsCanvas");
-			HTMLCanvas.style.backgroundColor = "grey";
-
-			HTMLCanvas.aspectRatio = { W: 16, H: 9 };
-
-			HTMLCanvas.resize = function () {
-				const winW = window.innerWidth;
-				const winH = window.innerHeight;
-				const tmpScaleX = winW / this.aspectRatio.W;
-				const tmpScaleY = winH / this.aspectRatio.H;
-				this.scale = Math.min(tmpScaleX, tmpScaleY);
-				const W = this.aspectRatio.W * this.scale;
-				const H = this.aspectRatio.H * this.scale;
-				const X = (winW - W) / 2;
-				const Y = (winH - H) / 2;
-				this.width = W;
-				this.height = H;
-				this.style.left = X + "px";
-				this.style.top = Y + "px";
-				stage.update();
-			};
-
-			const stage = new createjs.Stage(HTMLCanvas);
-
-			const fixedCircle = new createjs.Shape();
-			stage.addChild(fixedCircle);
-			fixedCircle.graphics.setStrokeStyle(2).beginStroke("red");
-			fixedCircle.graphics.drawCircle(100, 100, 100);
-
-			const smartCircle = new createjs.Shape();
-			stage.addChild(smartCircle);
-			smartCircle.redraw = function () {
-				this.graphics.clear();
-				this.graphics.setStrokeStyle(2).beginStroke("green");
-				const R = Math.min(HTMLCanvas.width, HTMLCanvas.height) / 2;
-				this.graphics.drawCircle(R, R, R);
-				stage.update();
-			};
-
-			window.addEventListener(
-				"resize",
-				HTMLCanvas.resize.bind(HTMLCanvas)
-			);
-
-			window.addEventListener(
-				"resize",
-				smartCircle.redraw.bind(smartCircle)
-			);
-
-			window.dispatchEvent(new Event("resize"));
-		</script>
-
 		<h1>Bienvenue sur ma page web GitHub</h1>
 		<p>(https://profbenjamintardif.github.io)</p>
 		<img src="./PHOTO.png" />
